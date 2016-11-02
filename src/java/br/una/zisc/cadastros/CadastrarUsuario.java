@@ -34,39 +34,20 @@ public class CadastrarUsuario {
             Consultas con = new Consultas();
             if (con.buscaUsuario(email).getEmail().equals(email)) {
                 System.err.println("USUARIO_CADASTRADO");
-                System.err.println("USUARIO_CADASTRADO");
-                System.err.println("USUARIO_CADASTRADO");
-                System.err.println("USUARIO_CADASTRADO");
-                System.err.println("USUARIO_CADASTRADO");
-                System.err.println("USUARIO_CADASTRADO");
                 String json = gson.toJson("USUARIO_CADASTRADO");
                 return json;
-            } else {
-                Usuario usuario = new Usuario(nome, email);
-                Cadastros cad = new Cadastros();
-                cad.cadastrarUsuario(usuario);
-                Seguranca seguranca = new Seguranca(usuario, senha);
-                cad.cadastrarSeguranca(seguranca);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println("ERRO");
-            System.err.println("ERRO");
-            System.err.println("ERRO");
-            System.err.println("ERRO");
-            System.err.println("ERRO");
-            System.err.println("ERRO");
-            System.err.println("ERRO");
+            Usuario usuario = new Usuario(nome, email);
+            Cadastros cad = new Cadastros();
+            cad.cadastrarUsuario(usuario);
+            Seguranca seguranca = new Seguranca(usuario, senha);
+            cad.cadastrarSeguranca(seguranca);
 
-            String json = gson.toJson("ERRO");
+            String json = gson.toJson("OK");
             return json;
         }
         System.err.println("OK");
-        System.err.println("OK");
-        System.err.println("OK");
-        System.err.println("OK");
-        System.err.println("OK");
-        System.err.println("OK");
-
         String json = gson.toJson("OK");
         return json;
     }

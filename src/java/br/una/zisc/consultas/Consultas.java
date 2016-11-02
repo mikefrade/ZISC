@@ -20,6 +20,8 @@ import org.hibernate.annotations.common.util.impl.Log;
  */
 public class Consultas {
 
+  
+    
     @SuppressWarnings("unchecked")
     public Usuario buscaUsuario(String email) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -29,16 +31,16 @@ public class Consultas {
         q.setParameter("email", email);
         List<Usuario> lista = (List<Usuario>) q.list();
         System.err.println("Acessando banco!");
-        Usuario usuario = null;
         try {
-            usuario = lista.get(0);
+            Usuario usuario = lista.get(0);
             s.getTransaction().commit();
             System.err.println("Commit!");
-
+            return usuario;
         } catch (IndexOutOfBoundsException e) {
-        return usuario;
+            s.getTransaction().commit();
+            Usuario u = null;
+            return u;
         }
-        return usuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -63,38 +65,79 @@ public class Consultas {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Alerta> buscaAlerta(String bairro, String cidade, String estado) {
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-        s.beginTransaction();
+    public List<Alerta> buscaAlerta(String latitude, String longitude) {
+        String latitudec, latitudeAnt, latitudeDep, longitudec, longitudeAnt, longitudeDep;
+        Double auxlat, auxlong;
+        double validador = Double.parseDouble(latitude);
+        if (validador < 0) {
+            latitudec = latitude.substring(0, 6);
+        } else {
+            latitudec = latitude.substring(0, 5);
+        }
+        auxlat = (Double.parseDouble(latitudec) - 0.01);
+        latitudeAnt = String.valueOf(auxlat);
+        auxlat = (Double.parseDouble(latitudec) + 0.01);
+        latitudeDep = String.valueOf(auxlat);
+        double validador1 = Double.parseDouble(longitude);
+        if (validador1 < 0) {
+            longitudec = longitude.substring(0, 6);
+        } else {
+            longitudec = longitude.substring(0, 5);
+        }
+        auxlong = (Double.parseDouble(longitudec) - 0.01);
+        longitudeAnt = String.valueOf(auxlong);
+        auxlong = (Double.parseDouble(longitudec) + 0.01);
+        longitudeDep = String.valueOf(auxlong);
 
-        Query q = s.createQuery("from Alerta alerta where alerta.bairro = :bairro and alerta.cidade = :cidade and alerta.estado = :estado");
-        q.setParameter("bairro", bairro);
-        q.setParameter("cidade", cidade);
-        q.setParameter("estado", estado);
+        System.err.println("PASSEI");
+        List<Alerta> listatotal = (List<Alerta>) (conAlerta(latitudeAnt, longitudeAnt));
+        listatotal = (List<Alerta>) conAlerta(latitudec, longitudec);
+        listatotal = (List<Alerta>) conAlerta(latitudeDep, longitudeDep);
+        System.err.println("AQUI");
 
-        List<Alerta> lista = (List<Alerta>) q.list();
+//        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+//        s.beginTransaction();
+//        Query q = s.createQuery("from Alerta alerta where alerta.longitude LIKE :longitude and alerta.latitude LIKE latitudec");
+//        q.setParameter("latitudec", latitudec + "%");
+//        q.setParameter("longitudec", longitudec + "%");
+//
+//        List<Alerta> lista = (List<Alerta>) q.list();
+      
         List<Alerta> lista1 = new ArrayList<>();
-        System.err.println("lista do tamanho " + lista.size());
+        System.err.println("lista do tamanho " + listatotal.size());
 
-        for (int i = 0; i < lista.size(); i++) {
-            Alerta alerta = lista.get(i);
+        for (int i = 0; i < listatotal.size(); i++) {
+            Alerta alerta = listatotal.get(i);
             Alerta alerta1 = new Alerta();
 
-            alerta1.setIdalerta(lista.get(i).getIdalerta());
-            alerta1.setLoghora(lista.get(i).getLoghora());
-            alerta1.setLatitude(lista.get(i).getLatitude());
-            alerta1.setLatitude(lista.get(i).getLatitude());
-            alerta1.setBairro(lista.get(i).getBairro());
-            alerta1.setCidade(lista.get(i).getCidade());
-            alerta1.setEstado(lista.get(i).getEstado());
-            alerta1.setObservacao(lista.get(i).getObservacao());
-            alerta1.setTipo(lista.get(i).getTipo());
-            alerta1.setStatusAtivo(lista.get(i).isStatusAtivo());
+            alerta1.setIdalerta(listatotal.get(i).getIdalerta());
+            alerta1.setLoghora(listatotal.get(i).getLoghora());
+            alerta1.setLatitude(listatotal.get(i).getLatitude());
+            alerta1.setLatitude(listatotal.get(i).getLatitude());
+            alerta1.setBairro(listatotal.get(i).getBairro());
+            alerta1.setCidade(listatotal.get(i).getCidade());
+            alerta1.setEstado(listatotal.get(i).getEstado());
+            alerta1.setObservacao(listatotal.get(i).getObservacao());
+            alerta1.setTipo(listatotal.get(i).getTipo());
+            alerta1.setStatusAtivo(listatotal.get(i).isStatusAtivo());
+            
 
             lista1.add(alerta1);
+
         }
 
         return lista1;
+    }
+
+    public List<Alerta> conAlerta(String latitude, String longitude) {
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        s.beginTransaction();
+        Query q = s.createQuery("from Alerta alerta where alerta.longitude LIKE :longitude and alerta.latitude LIKE :latitude");
+        q.setParameter("latitude", latitude + "%");
+        q.setParameter("longitude", longitude + "%");
+        List<Alerta> lista = (List<Alerta>) q.list();
+        s.getTransaction().commit();
+        return lista;
     }
 
     @SuppressWarnings("unchecked")
