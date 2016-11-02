@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2016 20:08:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.una.zisc.dao.Endereco" table="ENDERECO" schema="dbo" catalog="banco_dados_api" optimistic-lock="version">
+        <id name="idendereco" type="int">
+            <column name="idendereco" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="br.una.zisc.dao.Usuario" fetch="select">
+            <column name="idusuario" not-null="true" />
+        </many-to-one>
+        <property name="longitude" type="string">
+            <column name="longitude" length="15" not-null="true" />
+        </property>
+        <property name="latitude" type="string">
+            <column name="latitude" length="15" not-null="true" />
+        </property>
+        <property name="tiporesidencia" type="string">
+            <column name="tiporesidencia" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

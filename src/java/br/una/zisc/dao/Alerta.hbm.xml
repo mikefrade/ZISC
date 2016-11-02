@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2016 20:08:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.una.zisc.dao.Alerta" table="ALERTA" schema="dbo" catalog="banco_dados_api" optimistic-lock="version">
+        <id name="idalerta" type="int">
+            <column name="idalerta" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="br.una.zisc.dao.Usuario" fetch="select">
+            <column name="idusuario" not-null="true" />
+        </many-to-one>
+        <property name="loghora" type="timestamp">
+            <column name="loghora" length="23" not-null="true" />
+        </property>
+        <property name="longitude" type="string">
+            <column name="longitude" length="15" not-null="true" />
+        </property>
+        <property name="latitude" type="string">
+            <column name="latitude" length="15" not-null="true" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="20" not-null="true" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="cidade" length="20" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" not-null="true" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" length="1000" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="20" not-null="true" />
+        </property>
+        <property name="statusAtivo" type="boolean">
+            <column name="status_ativo" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

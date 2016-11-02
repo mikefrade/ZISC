@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2016 20:08:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.una.zisc.dao.Usuario" table="USUARIO" schema="dbo" catalog="banco_dados_api" optimistic-lock="version">
+        <id name="idusuario" type="int">
+            <column name="idusuario" />
+            <generator class="assigned" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="200" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <set name="enderecos" table="ENDERECO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="br.una.zisc.dao.Endereco" />
+        </set>
+        <set name="segurancas" table="SEGURANCA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="br.una.zisc.dao.Seguranca" />
+        </set>
+        <set name="alertas" table="ALERTA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="br.una.zisc.dao.Alerta" />
+        </set>
+    </class>
+</hibernate-mapping>
