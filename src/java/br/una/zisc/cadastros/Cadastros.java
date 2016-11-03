@@ -33,7 +33,13 @@ public class Cadastros {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         s.save(usuario);
+        System.err.println("Email: " + usuario.getEmail());
+        System.err.println("Email: " + usuario.getEmail());
+        System.err.println("Email: " + usuario.getEmail());
+        System.err.println("Email: " + usuario.getEmail());
+        System.err.println("Email: " + usuario.getEmail());
         s.getTransaction().commit();
+        s.close();
 
     }
 
