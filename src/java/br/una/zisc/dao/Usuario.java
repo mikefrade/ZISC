@@ -1,5 +1,5 @@
 package br.una.zisc.dao;
-// Generated 01/11/2016 20:08:24 by Hibernate Tools 4.3.1
+// Generated 05/11/2016 00:18:56 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -34,10 +34,6 @@ public class Usuario  implements java.io.Serializable {
        this.enderecos = enderecos;
        this.segurancas = segurancas;
        this.alertas = alertas;
-    }
-     public Usuario(String nome, String email) {
-       this.nome = nome;
-       this.email = email;       
     }
    
     public int getIdusuario() {

@@ -47,9 +47,9 @@ Contributor(s):
     <property name="hibernate.connection.password">-b+-4ac/2</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping resource="br/una/zisc/dao/Seguranca.hbm.xml"/>
-    <mapping resource="br/una/zisc/dao/Alerta.hbm.xml"/>
-    <mapping resource="br/una/zisc/dao/Usuario.hbm.xml"/>
     <mapping resource="br/una/zisc/dao/Endereco.hbm.xml"/>
+    <mapping resource="br/una/zisc/dao/Seguranca.hbm.xml"/>
+    <mapping resource="br/una/zisc/dao/Usuario.hbm.xml"/>
+    <mapping resource="br/una/zisc/dao/Alerta.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

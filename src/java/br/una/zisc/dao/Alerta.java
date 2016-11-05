@@ -1,5 +1,5 @@
 package br.una.zisc.dao;
-// Generated 01/11/2016 20:08:24 by Hibernate Tools 4.3.1
+// Generated 05/11/2016 00:18:56 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 
@@ -23,19 +23,6 @@ public class Alerta implements java.io.Serializable {
     public Alerta() {
     }
 
-    public Alerta(int idalerta, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean statusAtivo) {
-        this.idalerta = idalerta;
-        this.loghora = loghora;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.observacao = observacao;
-        this.tipo = tipo;
-        this.statusAtivo = statusAtivo;
-    }
-
     public Alerta(int idalerta, Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean statusAtivo) {
         this.idalerta = idalerta;
         this.usuario = usuario;
@@ -49,8 +36,8 @@ public class Alerta implements java.io.Serializable {
         this.tipo = tipo;
         this.statusAtivo = statusAtivo;
     }
-    
-       public Alerta(Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean statusAtivo) {
+
+    public Alerta(Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean statusAtivo) {
         this.usuario = usuario;
         this.loghora = loghora;
         this.longitude = longitude;
@@ -62,12 +49,6 @@ public class Alerta implements java.io.Serializable {
         this.tipo = tipo;
         this.statusAtivo = statusAtivo;
     }
-
-    @Override
-    public String toString() {
-        return "Alerta{" + "idalerta=" + idalerta + ", loghora=" + loghora + ", longitude=" + longitude + ", latitude=" + latitude + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", observacao=" + observacao + ", tipo=" + tipo + ", statusAtivo=" + statusAtivo + '}';
-    }
-    
 
     public int getIdalerta() {
         return this.idalerta;

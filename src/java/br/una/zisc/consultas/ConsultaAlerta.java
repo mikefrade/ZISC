@@ -19,26 +19,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Marcos Benevides
  */
-//@Path("/consultaalerta/{bairro}/{cidade}/{estado}")
-//public class ConsultaAlerta {
-//
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public GenericEntity<List<Alerta>> getAlerta(
-//            @PathParam("bairro") String bairro,
-//            @PathParam("cidade") String cidade,
-//            @PathParam("estado") String estado) {
-//
-//        Consultas con = new Consultas();
-//        Gson gson = new Gson();
-//
-//        List<Alerta> lista = con.buscaAlerta(bairro, cidade, estado);
-//        
-//        GenericEntity<List<Alerta>> entidade = new GenericEntity<List<Alerta>>(lista){};
-//        
-//        return entidade;
-//
-//    }
+
 @Path("/consultaalerta/{latitude}/{longitude}")
 public class ConsultaAlerta {
 
@@ -52,6 +33,7 @@ public class ConsultaAlerta {
          Gson gson = new Gson();
 
         List<Alerta> lista = consultas.buscaAlerta(latitude, longitude);
+            System.err.println("AQUI 2");
         
         GenericEntity<List<Alerta>> entidade = new GenericEntity<List<Alerta>>(lista){};
         

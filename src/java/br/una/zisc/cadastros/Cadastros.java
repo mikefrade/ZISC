@@ -10,6 +10,8 @@ import br.una.zisc.dao.Endereco;
 import br.una.zisc.dao.Seguranca;
 import br.una.zisc.dao.Usuario;
 import br.una.zisc.hibernate.HibernateUtil;
+import java.util.HashSet;
+import java.util.Set;
 import org.hibernate.Session;
 
 /**
@@ -28,29 +30,19 @@ public class Cadastros {
 
     }
 
-    @SuppressWarnings("unchecked")
-    public void cadastrarUsuario(Usuario usuario) {
+   @SuppressWarnings("unchecked")
+    public void cadastrarUsuario(Usuario usuario, String senha) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Set<Seguranca> hsc = new HashSet<>();
+        Seguranca s1 = new Seguranca(usuario,senha);
+        hsc.add(s1);
+        usuario.setSegurancas(hsc);
         s.beginTransaction();
         s.save(usuario);
-        System.err.println("Email: " + usuario.getEmail());
-        System.err.println("Email: " + usuario.getEmail());
-        System.err.println("Email: " + usuario.getEmail());
-        System.err.println("Email: " + usuario.getEmail());
-        System.err.println("Email: " + usuario.getEmail());
+        s.save(s1);
         s.getTransaction().commit();
-        s.close();
-
-    }
-
-    @SuppressWarnings("unchecked")
-    public void cadastrarSeguranca(Seguranca seguranca) {
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-        s.beginTransaction();
-        s.save(seguranca);
-        s.getTransaction().commit();
-
-    }
+        System.err.println("Usuario Cadastrado");
+     }
 
     @SuppressWarnings("unchecked")
     public void cadastrarEndereco(Endereco endereco) {

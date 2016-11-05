@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01/11/2016 20:08:25 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05/11/2016 00:18:59 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.una.zisc.dao.Usuario" table="USUARIO" schema="dbo" catalog="banco_dados_api" optimistic-lock="version">
         <id name="idusuario" type="int">

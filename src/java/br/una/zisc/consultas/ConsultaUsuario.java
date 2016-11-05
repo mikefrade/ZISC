@@ -6,7 +6,6 @@
 package br.una.zisc.consultas;
 
 import br.una.zisc.dao.Usuario;
-import br.una.zisc.dao_.Usuario_;
 import com.google.gson.Gson;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

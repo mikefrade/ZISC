@@ -6,7 +6,6 @@
 package br.una.zisc.cadastros;
 
 import br.una.zisc.consultas.Consultas;
-import br.una.zisc.dao.Seguranca;
 import br.una.zisc.dao.Usuario;
 import com.google.gson.Gson;
 import javax.ws.rs.Consumes;
@@ -38,12 +37,11 @@ public class CadastrarUsuario {
                 return json;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            Usuario usuario = new Usuario(nome, email);
+            Usuario usuario = new Usuario();
+            usuario.setNome(nome);
+            usuario.setEmail(email);
             Cadastros cad = new Cadastros();
-            cad.cadastrarUsuario(usuario);
-            Seguranca seguranca = new Seguranca(usuario, senha);
-            cad.cadastrarSeguranca(seguranca);
-
+            cad.cadastrarUsuario(usuario, senha);
             String json = gson.toJson("OK");
             return json;
         }
