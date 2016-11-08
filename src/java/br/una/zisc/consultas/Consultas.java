@@ -7,12 +7,10 @@ package br.una.zisc.consultas;
 
 import br.una.zisc.dao.*;
 import br.una.zisc.hibernate.HibernateUtil;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.annotations.common.util.impl.Log;
 
 /**
  *
