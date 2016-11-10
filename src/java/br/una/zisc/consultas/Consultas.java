@@ -70,18 +70,30 @@ public class Consultas {
             System.err.println("Imprimindo latitude: " + latitudec);
             auxlat = (Double.parseDouble(latitudec) + 0.01);
             latitudeAnt = String.valueOf(auxlat);
+            if(latitudeAnt.length() < 6){
+                latitudeAnt = latitudeAnt + "0";
+            }
             System.err.println("Imprimindo latitudeAnt: " + latitudeAnt);
             auxlat = (Double.parseDouble(latitudec) - 0.01);
             latitudeDep = String.valueOf(auxlat);
+             if(latitudeDep.length() < 6){
+                latitudeDep = latitudeDep + "0";
+            }
             System.err.println("Imprimindo latitudeDep: " + latitudeDep);
         } else {
             latitudec = latitude.substring(0, 5);
             System.err.println("Imprimindo latitude: " + latitudec);
             auxlat = (Double.parseDouble(latitudec) - 0.01);
             latitudeAnt = String.valueOf(auxlat);
+             if(latitudeAnt.length() < 5){
+                latitudeAnt = latitudeAnt + "0";
+            }
             System.err.println("Imprimindo latitudeAnt: " + latitudeAnt);
             auxlat = (Double.parseDouble(latitudec) + 0.01);
             latitudeDep = String.valueOf(auxlat);
+            if(latitudeDep.length() < 5){
+                latitudeDep = latitudeDep + "0";
+            }
             System.err.println("Imprimindo latitudeDep: " + latitudeDep);
         }
         double validador1 = Double.parseDouble(longitude);
@@ -90,18 +102,30 @@ public class Consultas {
             System.err.println("Imprimindo Longitude: " + longitudec);
             auxlong = (Double.parseDouble(longitudec) + 0.01);
             longitudeAnt = String.valueOf(auxlong);
+            if(longitudeAnt.length() < 6){
+                longitudeAnt = longitudeAnt + "0";
+            }
             System.err.println("Imprimindo longitudeAnt: " + longitudeAnt);
             auxlong = (Double.parseDouble(longitudec) - 0.01);
             longitudeDep = String.valueOf(auxlong);
+            if(longitudeDep.length() < 6){
+                longitudeDep = longitudeDep + "0";
+            }
             System.err.println("Imprimindo longitudeDep: " + longitudeDep);
         } else {
             longitudec = longitude.substring(0, 5);
             System.err.println("Imprimindo Longitude: " + longitudec);
             auxlong = (Double.parseDouble(longitudec) - 0.01);
             longitudeAnt = String.valueOf(auxlong);
+             if(longitudeAnt.length() < 5){
+                longitudeAnt = longitudeAnt + "0";
+            }
             System.err.println("Imprimindo longitudeAnt: " + longitudeAnt);
             auxlong = (Double.parseDouble(longitudec) + 0.01);
             longitudeDep = String.valueOf(auxlong);
+             if(longitudeDep.length() < 5){
+                longitudeDep = latitudeDep + "0";
+            }
             System.err.println("Imprimindo longitudeDep: " + longitudeDep);
         }
         List<Alerta> lista = (List<Alerta>) conAlerta(latitude, longitude);
