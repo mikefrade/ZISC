@@ -152,7 +152,7 @@ public class Consultas {
             alerta1.setIdalerta(listatotal.get(i).getIdalerta());
             alerta1.setLoghora(listatotal.get(i).getLoghora());
             alerta1.setLatitude(listatotal.get(i).getLatitude());
-            alerta1.setLatitude(listatotal.get(i).getLatitude());
+            alerta1.setLongitude(listatotal.get(i).getLongitude());
             alerta1.setBairro(listatotal.get(i).getBairro());
             System.out.println("Imprimindo bairro " + listatotal.get(i).getBairro());
             alerta1.setCidade(listatotal.get(i).getCidade());
@@ -161,6 +161,7 @@ public class Consultas {
             alerta1.setObservacao(listatotal.get(i).getObservacao());
             alerta1.setTipo(listatotal.get(i).getTipo());
             alerta1.setStatusAtivo(listatotal.get(i).isStatusAtivo());
+            alerta1.setEpositivo(listatotal.get(i).isEpositivo());
             lista1.add(alerta1);
         }
         return lista1;
