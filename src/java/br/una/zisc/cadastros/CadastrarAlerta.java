@@ -7,6 +7,7 @@ package br.una.zisc.cadastros;
 
 import br.una.zisc.consultas.Consultas;
 import br.una.zisc.dao.Alerta;
+import br.una.zisc.dao.Usuario;
 import com.google.gson.Gson;
 import java.util.Date;
 import javax.ws.rs.Consumes;
@@ -39,9 +40,11 @@ public class CadastrarAlerta {
 
         try {
             Consultas con = new Consultas();
-            Alerta alerta = new Alerta(con.buscaUsuario(email), logHora, longitude, latitude, bairro, cidade, estado, obs, tipo, ePositivo, true);
+            Usuario usuario = new Usuario();
+            usuario = con.buscaUsuario(email);
+            Alerta alerta = new Alerta(usuario, logHora, longitude, latitude, bairro, cidade, estado, obs, tipo, ePositivo, true);
             Cadastros cad = new Cadastros();
-            cad.cadastraralerta(alerta);
+            cad.cadastraralerta(usuario,alerta);
         } catch (ArrayIndexOutOfBoundsException e) {
             Gson gson = new Gson();
             String json = gson.toJson("NAO");
