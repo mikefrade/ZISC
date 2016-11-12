@@ -1,5 +1,5 @@
 package br.una.zisc.dao;
-// Generated 05/11/2016 00:18:56 by Hibernate Tools 4.3.1
+// Generated 12/11/2016 15:07:10 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

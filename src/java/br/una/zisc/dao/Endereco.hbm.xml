@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05/11/2016 00:18:59 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12/11/2016 15:07:13 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.una.zisc.dao.Endereco" table="ENDERECO" schema="dbo" catalog="banco_dados_api" optimistic-lock="version">
         <id name="idendereco" type="int">
@@ -11,11 +11,20 @@
         <many-to-one name="usuario" class="br.una.zisc.dao.Usuario" fetch="select">
             <column name="idusuario" not-null="true" />
         </many-to-one>
+        <property name="bairro" type="string">
+            <column name="bairro" length="20" not-null="true" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="cidade" length="20" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" not-null="true" />
+        </property>
         <property name="longitude" type="string">
-            <column name="longitude" length="15" not-null="true" />
+            <column name="longitude" length="30" not-null="true" />
         </property>
         <property name="latitude" type="string">
-            <column name="latitude" length="15" not-null="true" />
+            <column name="latitude" length="30" not-null="true" />
         </property>
         <property name="tiporesidencia" type="string">
             <column name="tiporesidencia" length="20" not-null="true" />

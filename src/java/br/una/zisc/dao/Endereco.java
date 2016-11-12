@@ -1,5 +1,5 @@
 package br.una.zisc.dao;
-// Generated 05/11/2016 00:18:56 by Hibernate Tools 4.3.1
+// Generated 12/11/2016 15:07:10 by Hibernate Tools 4.3.1
 
 
 
@@ -11,6 +11,9 @@ public class Endereco  implements java.io.Serializable {
 
      private int idendereco;
      private Usuario usuario;
+     private String bairro;
+     private String cidade;
+     private String estado;
      private String longitude;
      private String latitude;
      private String tiporesidencia;
@@ -18,9 +21,12 @@ public class Endereco  implements java.io.Serializable {
     public Endereco() {
     }
 
-    public Endereco(int idendereco, Usuario usuario, String longitude, String latitude, String tiporesidencia) {
+    public Endereco(int idendereco, Usuario usuario, String bairro, String cidade, String estado, String longitude, String latitude, String tiporesidencia) {
        this.idendereco = idendereco;
        this.usuario = usuario;
+       this.bairro = bairro;
+       this.cidade = cidade;
+       this.estado = estado;
        this.longitude = longitude;
        this.latitude = latitude;
        this.tiporesidencia = tiporesidencia;
@@ -39,6 +45,27 @@ public class Endereco  implements java.io.Serializable {
     
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    public String getBairro() {
+        return this.bairro;
+    }
+    
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+    public String getCidade() {
+        return this.cidade;
+    }
+    
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+    public String getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     public String getLongitude() {
         return this.longitude;

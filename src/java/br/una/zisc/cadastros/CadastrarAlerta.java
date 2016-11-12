@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author mikef
  */
-@Path("/cadastraralerta")
+@Path("/CadastrarAlerta")
 public class CadastrarAlerta {
 
     @POST
@@ -34,11 +34,12 @@ public class CadastrarAlerta {
             @FormParam("cidade") String cidade,
             @FormParam("estado") String estado,
             @FormParam("obs") String obs,
-            @FormParam("tipo") String tipo) {
+            @FormParam("tipo") String tipo,
+            @FormParam("ePositivo") Boolean ePositivo) {
 
         try {
             Consultas con = new Consultas();
-            Alerta alerta = new Alerta(con.buscaUsuario(email), logHora, longitude, latitude, bairro, cidade, estado, obs, tipo, true);
+            Alerta alerta = new Alerta(con.buscaUsuario(email), logHora, longitude, latitude, bairro, cidade, estado, obs, tipo, ePositivo, true);
             Cadastros cad = new Cadastros();
             cad.cadastraralerta(alerta);
         } catch (ArrayIndexOutOfBoundsException e) {

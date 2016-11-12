@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author mikef
  */
-@Path("/cadastrarusuario")
+@Path("/CadastrarUsuario")
 public class CadastrarUsuario {
 
     @POST

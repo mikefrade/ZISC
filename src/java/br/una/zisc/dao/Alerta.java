@@ -1,5 +1,5 @@
 package br.una.zisc.dao;
-// Generated 05/11/2016 00:18:56 by Hibernate Tools 4.3.1
+// Generated 12/11/2016 15:07:10 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 
@@ -18,12 +18,13 @@ public class Alerta implements java.io.Serializable {
     private String estado;
     private String observacao;
     private String tipo;
+    private boolean epositivo;
     private boolean statusAtivo;
 
     public Alerta() {
     }
 
-    public Alerta(int idalerta, Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean statusAtivo) {
+    public Alerta(int idalerta, Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean epositivo, boolean statusAtivo) {
         this.idalerta = idalerta;
         this.usuario = usuario;
         this.loghora = loghora;
@@ -34,10 +35,11 @@ public class Alerta implements java.io.Serializable {
         this.estado = estado;
         this.observacao = observacao;
         this.tipo = tipo;
+        this.epositivo = epositivo;
         this.statusAtivo = statusAtivo;
     }
 
-    public Alerta(Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean statusAtivo) {
+    public Alerta(Usuario usuario, Date loghora, String longitude, String latitude, String bairro, String cidade, String estado, String observacao, String tipo, boolean epositivo, boolean statusAtivo) {
         this.usuario = usuario;
         this.loghora = loghora;
         this.longitude = longitude;
@@ -47,6 +49,7 @@ public class Alerta implements java.io.Serializable {
         this.estado = estado;
         this.observacao = observacao;
         this.tipo = tipo;
+        this.epositivo = epositivo;
         this.statusAtivo = statusAtivo;
     }
 
@@ -128,6 +131,14 @@ public class Alerta implements java.io.Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean isEpositivo() {
+        return this.epositivo;
+    }
+
+    public void setEpositivo(boolean epositivo) {
+        this.epositivo = epositivo;
     }
 
     public boolean isStatusAtivo() {

@@ -42,7 +42,7 @@ Contributor(s):
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="banco_dados_api" match-schema="dbo"/>
   <table-filter match-name="SEGURANCA"/>
-  <table-filter match-name="ALERTA"/>
-  <table-filter match-name="USUARIO"/>
   <table-filter match-name="ENDERECO"/>
+  <table-filter match-name="USUARIO"/>
+  <table-filter match-name="ALERTA"/>
 </hibernate-reverse-engineering>
