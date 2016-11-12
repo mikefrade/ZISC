@@ -9,7 +9,7 @@ import br.una.zisc.consultas.Consultas;
 import br.una.zisc.dao.Alerta;
 import br.una.zisc.dao.Usuario;
 import com.google.gson.Gson;
-import java.util.Date;
+import java.sql.Date;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
