@@ -70,13 +70,13 @@ public class Consultas {
             System.err.println("Imprimindo latitude: " + latitudec);
             auxlat = (Double.parseDouble(latitudec) + 0.01);
             latitudeAnt = String.valueOf(auxlat);
-            if(latitudeAnt.length() < 6){
+            if (latitudeAnt.length() < 6) {
                 latitudeAnt = latitudeAnt + "0";
             }
             System.err.println("Imprimindo latitudeAnt: " + latitudeAnt);
             auxlat = (Double.parseDouble(latitudec) - 0.01);
             latitudeDep = String.valueOf(auxlat);
-             if(latitudeDep.length() < 6){
+            if (latitudeDep.length() < 6) {
                 latitudeDep = latitudeDep + "0";
             }
             System.err.println("Imprimindo latitudeDep: " + latitudeDep);
@@ -85,13 +85,13 @@ public class Consultas {
             System.err.println("Imprimindo latitude: " + latitudec);
             auxlat = (Double.parseDouble(latitudec) - 0.01);
             latitudeAnt = String.valueOf(auxlat);
-             if(latitudeAnt.length() < 5){
+            if (latitudeAnt.length() < 5) {
                 latitudeAnt = latitudeAnt + "0";
             }
             System.err.println("Imprimindo latitudeAnt: " + latitudeAnt);
             auxlat = (Double.parseDouble(latitudec) + 0.01);
             latitudeDep = String.valueOf(auxlat);
-            if(latitudeDep.length() < 5){
+            if (latitudeDep.length() < 5) {
                 latitudeDep = latitudeDep + "0";
             }
             System.err.println("Imprimindo latitudeDep: " + latitudeDep);
@@ -102,13 +102,13 @@ public class Consultas {
             System.err.println("Imprimindo Longitude: " + longitudec);
             auxlong = (Double.parseDouble(longitudec) + 0.01);
             longitudeAnt = String.valueOf(auxlong);
-            if(longitudeAnt.length() < 6){
+            if (longitudeAnt.length() < 6) {
                 longitudeAnt = longitudeAnt + "0";
             }
             System.err.println("Imprimindo longitudeAnt: " + longitudeAnt);
             auxlong = (Double.parseDouble(longitudec) - 0.01);
             longitudeDep = String.valueOf(auxlong);
-            if(longitudeDep.length() < 6){
+            if (longitudeDep.length() < 6) {
                 longitudeDep = longitudeDep + "0";
             }
             System.err.println("Imprimindo longitudeDep: " + longitudeDep);
@@ -117,24 +117,33 @@ public class Consultas {
             System.err.println("Imprimindo Longitude: " + longitudec);
             auxlong = (Double.parseDouble(longitudec) - 0.01);
             longitudeAnt = String.valueOf(auxlong);
-             if(longitudeAnt.length() < 5){
+            if (longitudeAnt.length() < 5) {
                 longitudeAnt = longitudeAnt + "0";
             }
             System.err.println("Imprimindo longitudeAnt: " + longitudeAnt);
             auxlong = (Double.parseDouble(longitudec) + 0.01);
             longitudeDep = String.valueOf(auxlong);
-             if(longitudeDep.length() < 5){
+            if (longitudeDep.length() < 5) {
                 longitudeDep = latitudeDep + "0";
             }
             System.err.println("Imprimindo longitudeDep: " + longitudeDep);
         }
-        List<Alerta> lista = (List<Alerta>) conAlerta(latitude, longitude);
-        List<Alerta> listaAnt = (List<Alerta>) conAlerta(latitudeAnt, longitudeAnt);
-        List<Alerta> listaDep = (List<Alerta>) conAlerta(latitudeDep, longitudeDep);
+        List<Alerta> lista = (List<Alerta>) conAlertalat(latitude);
+        List<Alerta> lista2 = (List<Alerta>) conAlertalong(longitude);
+
+        List<Alerta> listaAnt = (List<Alerta>) conAlertalat(latitudeAnt);
+        List<Alerta> listaAnt2 = (List<Alerta>) conAlertalong(longitudeAnt);
+
+        List<Alerta> listaDep = (List<Alerta>) conAlertalat(latitudeDep);
+        List<Alerta> listaDep2 = (List<Alerta>) conAlertalong(longitudeDep);
+
         List<Alerta> listatotal = new ArrayList<>();//concatenaLista(lista, listaAnt, listaDep);
         listatotal.addAll(lista);
+        listatotal.addAll(lista2);
         listatotal.addAll(listaAnt);
+        listatotal.addAll(listaAnt2);
         listatotal.addAll(listaDep);
+        listatotal.addAll(listaDep2);
         List<Alerta> lista1 = new ArrayList<>();
         System.err.println("lista do tamanho " + listatotal.size());
         for (int i = 0; i < listatotal.size(); i++) {
@@ -157,12 +166,30 @@ public class Consultas {
         return lista1;
     }
 
-    public List<Alerta> conAlerta(String latitude, String longitude) {
+    public List<Alerta> conAlertalong(String longitude) {
+//        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+//        s.beginTransaction();
+//        Query q = s.createQuery("from Alerta alerta where alerta.longitude like :longitude and alerta.latitude like :latitude");
+//        q.setParameter("latitude", latitude + "%");
+//        q.setParameter("longitude", longitude + "%");
+//        List<Alerta> lista = (List<Alerta>) q.list();
+//        s.getTransaction().commit();
+//        return lista;
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
-        Query q = s.createQuery("from Alerta alerta where alerta.longitude like :longitude and alerta.latitude like :latitude");
-        q.setParameter("latitude", latitude + "%");
+        Query q = s.createQuery("from Alerta alerta where alerta.longitude like :longitude");
         q.setParameter("longitude", longitude + "%");
+        List<Alerta> lista = (List<Alerta>) q.list();
+        s.getTransaction().commit();
+        return lista;
+    }
+    
+        public List<Alerta> conAlertalat(String latitude) {
+
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        s.beginTransaction();
+        Query q = s.createQuery("from Alerta alerta where alerta.latitude like :latitude");
+        q.setParameter("latitude", latitude + "%");
         List<Alerta> lista = (List<Alerta>) q.list();
         s.getTransaction().commit();
         return lista;
