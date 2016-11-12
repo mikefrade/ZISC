@@ -21,20 +21,19 @@ import org.hibernate.Session;
 public class Cadastros {
 
     @SuppressWarnings("unchecked")
-    public void cadastraralerta(Alerta alerta) {
+    public void cadastraralerta(Usuario usuario, Alerta alerta) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
+        s.update(usuario);
         s.save(alerta);
         s.getTransaction().commit();
-        // s.close();
-
     }
 
-   @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public void cadastrarUsuario(Usuario usuario, String senha) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         Set<Seguranca> hsc = new HashSet<>();
-        Seguranca s1 = new Seguranca(usuario,senha);
+        Seguranca s1 = new Seguranca(usuario, senha);
         hsc.add(s1);
         usuario.setSegurancas(hsc);
         s.beginTransaction();
@@ -42,7 +41,7 @@ public class Cadastros {
         s.save(s1);
         s.getTransaction().commit();
         System.err.println("Usuario Cadastrado");
-     }
+    }
 
     @SuppressWarnings("unchecked")
     public void cadastrarEndereco(Endereco endereco) {
