@@ -129,21 +129,27 @@ public class Consultas {
             System.err.println("Imprimindo longitudeDep: " + longitudeDep);
         }
         List<Alerta> lista = (List<Alerta>) conAlerta(longitude, latitude);
-        //       List<Alerta> lista2 = (List<Alerta>) conAlertalong(longitude);
+        List<Alerta> lista2 = (List<Alerta>) conAlerta(longitude, latitudeAnt);
+        List<Alerta> lista3 = (List<Alerta>) conAlerta(longitude, latitudeDep);
 
         List<Alerta> listaAnt = (List<Alerta>) conAlerta(longitudeAnt, latitudeAnt);
-        //       List<Alerta> listaAnt2 = (List<Alerta>) conAlertalong(longitudeAnt);
+        List<Alerta> listaAnt2 = (List<Alerta>) conAlerta(longitudeAnt, latitude);
+        List<Alerta> listaAnt3 = (List<Alerta>) conAlerta(longitudeAnt, latitudeDep);
 
         List<Alerta> listaDep = (List<Alerta>) conAlerta(longitudeDep, latitudeDep);
-        //     List<Alerta> listaDep2 = (List<Alerta>) conAlertalong(longitudeDep);
+        List<Alerta> listaDep2 = (List<Alerta>) conAlerta(longitudeDep, latitude);
+        List<Alerta> listaDep3 = (List<Alerta>) conAlerta(longitudeDep, latitudeAnt);
 
         List<Alerta> listatotal = new ArrayList<>();//concatenaLista(lista, listaAnt, listaDep);
         listatotal.addAll(lista);
-        //    listatotal.addAll(lista2);
+        listatotal.addAll(lista2);
+        listatotal.addAll(lista3);
         listatotal.addAll(listaAnt);
-        //   listatotal.addAll(listaAnt2);
+        listatotal.addAll(listaAnt2);
+        listatotal.addAll(listaAnt3);
         listatotal.addAll(listaDep);
-        //    listatotal.addAll(listaDep2);
+        listatotal.addAll(listaDep2);
+        listatotal.addAll(listaDep3);
         List<Alerta> lista1 = new ArrayList<>();
         System.err.println("lista do tamanho " + listatotal.size());
         for (int i = 0; i < listatotal.size(); i++) {
@@ -170,31 +176,13 @@ public class Consultas {
     public List<Alerta> conAlerta(String longitude, String latitude) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
-        Query q = s.createQuery("from Alerta alerta where alerta.longitude like :longitude or alerta.latitude like :latitude");
+        Query q = s.createQuery("from Alerta alerta where alerta.longitude like :longitude and alerta.latitude like :latitude");
         q.setParameter("longitude", longitude + "%");
         q.setParameter("latitude", latitude + "%");
         List<Alerta> lista = (List<Alerta>) q.list();
         s.getTransaction().commit();
         return lista;
-//        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-//        s.beginTransaction();
-//        Query q = s.createQuery("from Alerta alerta where alerta.longitude like :longitude");
-//        q.setParameter("longitude", longitude + "%");
-//        List<Alerta> lista = (List<Alerta>) q.list();
-//        s.getTransaction().commit();
-//        return lista;
     }
-//    
-//        public List<Alerta> conAlertalat(String latitude) {
-//
-//        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-//        s.beginTransaction();
-//        Query q = s.createQuery("from Alerta alerta where alerta.latitude like :latitude");
-//        q.setParameter("latitude", latitude + "%");
-//        List<Alerta> lista = (List<Alerta>) q.list();
-//        s.getTransaction().commit();
-//        return lista;
-//    }
 
     @SuppressWarnings("unchecked")
     public String usuarioValido() {
