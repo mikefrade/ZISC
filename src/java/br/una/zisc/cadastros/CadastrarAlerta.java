@@ -40,8 +40,7 @@ public class CadastrarAlerta {
 
         try {
             Consultas con = new Consultas();
-            Usuario usuario = new Usuario();
-            usuario = con.buscaUsuario(email);
+            Usuario usuario = con.buscaUsuario(email);
             Alerta alerta = new Alerta(usuario, logHora, longitude, latitude, bairro, cidade, estado, obs, tipo, ePositivo, true);
             Cadastros cad = new Cadastros();
             cad.cadastraralerta(usuario,alerta);

@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
  * @author Marcos Benevides
  */
 
-@Path("/ConsultaAlerta/{latitude}/{longitude}")
+    @Path("/ConsultaAlerta/{latitude}/{longitude}")
 public class ConsultaAlerta {
 
     @GET

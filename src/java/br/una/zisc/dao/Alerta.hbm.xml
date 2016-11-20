@@ -6,7 +6,7 @@
     <class name="br.una.zisc.dao.Alerta" table="ALERTA" schema="dbo" catalog="banco_dados_api" optimistic-lock="version">
         <id name="idalerta" type="int">
             <column name="idalerta" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="usuario" class="br.una.zisc.dao.Usuario" fetch="select">
             <column name="idusuario" not-null="true" />
