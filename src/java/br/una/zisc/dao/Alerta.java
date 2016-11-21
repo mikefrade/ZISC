@@ -1,6 +1,6 @@
 package br.una.zisc.dao;
 // Generated 12/11/2016 15:07:10 by Hibernate Tools 4.3.1
-
+//sql.Date
 import java.sql.Date;
 
 /**
