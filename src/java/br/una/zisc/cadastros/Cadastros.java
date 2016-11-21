@@ -23,10 +23,15 @@ public class Cadastros {
     @SuppressWarnings("unchecked")
     public void cadastraralerta(Usuario usuario, Alerta alerta) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-        s.beginTransaction();
-        s.update(usuario);
-        s.save(alerta);
-        s.getTransaction().commit();
+        try {
+            s.beginTransaction();
+            s.update(usuario);
+            s.save(alerta);
+            s.getTransaction().commit();
+        } catch (RuntimeException e) {
+            s.getTransaction().rollback();
+            throw e;
+        }
     }
 
     @SuppressWarnings("unchecked")
