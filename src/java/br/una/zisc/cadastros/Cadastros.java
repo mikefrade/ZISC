@@ -31,6 +31,8 @@ public class Cadastros {
         } catch (RuntimeException e) {
             s.getTransaction().rollback();
             throw e;
+        } finally {
+            s.close();
         }
     }
 
