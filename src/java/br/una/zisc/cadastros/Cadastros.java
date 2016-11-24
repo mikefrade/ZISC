@@ -32,7 +32,7 @@ public class Cadastros {
             s.getTransaction().rollback();
             throw e;
         } finally {
-            s.close();
+            s.close(); // finaliza a session
         }
     }
 
