@@ -30,9 +30,8 @@ public class Cadastros {
             s.getTransaction().commit();
         } catch (RuntimeException e) {
             s.getTransaction().rollback();
-            throw e;
         } finally {
-            s.close(); // finaliza a session
+            //s.close(); // finaliza a session
         }
     }
 

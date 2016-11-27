@@ -54,7 +54,7 @@ public class Consultas {
 
         if (lista.get(0).getHash().equals(senha)) {
             s.getTransaction().commit();
-            return buscaUsuario(email);
+                return buscaUsuario(email);
         }
 
         return user;
