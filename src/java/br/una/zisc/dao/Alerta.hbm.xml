@@ -11,7 +11,7 @@
         <many-to-one name="usuario" class="br.una.zisc.dao.Usuario" fetch="select">
             <column name="idusuario" not-null="true" />
         </many-to-one>
-        <property name="loghora" type="date">
+        <property name="loghora" type="timestamp">
             <column name="loghora" length="23" not-null="true" />
         </property>
         <property name="longitude" type="string">

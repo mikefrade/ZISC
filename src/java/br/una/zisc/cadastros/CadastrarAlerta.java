@@ -10,6 +10,9 @@ import br.una.zisc.dao.Alerta;
 import br.una.zisc.dao.Usuario;
 import com.google.gson.Gson;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -28,7 +31,7 @@ public class CadastrarAlerta {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String alerta(@FormParam("email") String email,
-            @FormParam("logHora") Date logHora,
+            @FormParam("logHora") Timestamp logHora,
             @FormParam("longitude") String longitude,
             @FormParam("latitude") String latitude,
             @FormParam("bairro") String bairro,
@@ -41,9 +44,11 @@ public class CadastrarAlerta {
         try {
             Consultas con = new Consultas();
             Usuario usuario = con.buscaUsuario(email);
+            System.err.println(String.valueOf(logHora));
             Alerta alerta = new Alerta(usuario, logHora, longitude, latitude, bairro, cidade, estado, obs, tipo, ePositivo, true);
+            System.err.println(alerta.toString());
             Cadastros cad = new Cadastros();
-            cad.cadastraralerta(usuario,alerta);
+            cad.cadastraralerta(usuario, alerta);
         } catch (ArrayIndexOutOfBoundsException e) {
             Gson gson = new Gson();
             String json = gson.toJson("NAO");
