@@ -7,6 +7,7 @@ package br.una.zisc.consultas;
 
 import br.una.zisc.dao.*;
 import br.una.zisc.hibernate.HibernateUtil;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -40,7 +41,7 @@ public class Consultas {
     }
 
     @SuppressWarnings("unchecked")
-    public Usuario requisicaoLogin(String email, String senha) {
+    public Usuario requisicaoLogin(String email, String senha) throws UnsupportedEncodingException {
 
         Usuario user = new Usuario();
 
@@ -51,12 +52,12 @@ public class Consultas {
         q.setParameter("email", email);
 
         List<Seguranca> lista = (List<Seguranca>) q.list();
-
+        
         if (lista.get(0).getHash().equals(senha)) {
             s.getTransaction().commit();
                 return buscaUsuario(email);
         }
-
+        s.getTransaction().commit();
         return user;
     }
 

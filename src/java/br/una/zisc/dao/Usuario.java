@@ -35,6 +35,8 @@ public class Usuario  implements java.io.Serializable {
        this.segurancas = segurancas;
        this.alertas = alertas;
     }
+
+
    
     public int getIdusuario() {
         return this.idusuario;

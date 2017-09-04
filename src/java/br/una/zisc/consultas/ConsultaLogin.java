@@ -27,12 +27,13 @@ public class ConsultaLogin {
         System.err.println(email + " " + senha);
         Consultas con = new Consultas();
         Gson gson = new Gson();
-        Usuario usuario = new Usuario(
-                con.requisicaoLogin(email, senha).getIdusuario(),
-                con.requisicaoLogin(email, senha).getNome(),
-                con.requisicaoLogin(email, senha).getEmail());
-        String json = gson.toJson(usuario);
-        return json;
+//        Usuario usuario = new Usuario(
+//                con.requisicaoLogin(email, senha).getIdusuario(),
+//                con.requisicaoLogin(email, senha).getNome(),
+//                con.requisicaoLogin(email, senha).getEmail());
+//        String json = gson.toJson(usuario);
+//        return json;
+    return null;
     }
 
 }
