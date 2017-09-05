@@ -49,6 +49,7 @@ public class ConsultaLoginCrip {
 
         Consultas con = new Consultas();
         Gson gson = new Gson();
+        //Usuario usuario = con.requisicaoLogin(email, password);
         Usuario usuario = new Usuario(
                 con.requisicaoLogin(email, password).getIdusuario(),
                 con.requisicaoLogin(email, password).getNome(),

@@ -18,12 +18,12 @@ import org.hibernate.Session;
  * @author mikef
  */
 public class Consultas {
-
+    
     @SuppressWarnings("unchecked")
     public Usuario buscaUsuario(String email) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
-
+        
         Query q = s.createQuery("from Usuario u where u.email = :email");
         q.setParameter("email", email);
         List<Usuario> lista = (List<Usuario>) q.list();
@@ -39,39 +39,41 @@ public class Consultas {
             return u;
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     public Usuario requisicaoLogin(String email, String senha) throws UnsupportedEncodingException {
-
+        
         Usuario user = new Usuario();
-
+        
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
 
         Query q = s.createQuery("from Seguranca seg where seg.usuario.email = :email");
+//        Query q = s.createSQLQuery("SELECT U.nome AS [Nome], U.email AS [Email] , S.\"hash\" AS [Password]\n"
+//                + "FROM SEGURANCA AS S INNER JOIN USUARIO AS U ON S.idusuario = U.idusuario\n"
+//                + " WHERE U.email like :email");
         q.setParameter("email", email);
-
-        List<Seguranca> lista = (List<Seguranca>) q.list();
         
+        List<Seguranca> lista = (List<Seguranca>) q.list();
         if (lista.get(0).getHash().equals(senha)) {
             s.getTransaction().commit();
-                return buscaUsuario(email);
+            return buscaUsuario(email);
         }
         s.getTransaction().commit();
         return user;
     }
-
+    
     @SuppressWarnings("unchecked")
     public List<Alerta> buscaAlerta(String latitude, String longitude) {
         
         List<Alerta> listaGeral = conAlertaGeral();
         List<Alerta> listatotal = new ArrayList<>();
         
-        for(int i = 0; i < listaGeral.size(); i++) {
-            if(distancia2Pontos(listaGeral.get(i).getLatitude(),
-                                listaGeral.get(i).getLongitude(),
-                                latitude,
-                                longitude)) {
+        for (int i = 0; i < listaGeral.size(); i++) {
+            if (distancia2Pontos(listaGeral.get(i).getLatitude(),
+                    listaGeral.get(i).getLongitude(),
+                    latitude,
+                    longitude)) {
                 listatotal.add(listaGeral.get(i));
             }
         }
@@ -100,7 +102,7 @@ public class Consultas {
     }
     
     public Boolean distancia2Pontos(String latA, String longA, String latB, String longB) {
-
+        
         double earthRadius = 6371;//kilometers
         double dLat = Math.toRadians(Double.parseDouble(latB) - Double.parseDouble(latA));
         double dLng = Math.toRadians(Double.parseDouble(longB) - Double.parseDouble(longA));
@@ -111,8 +113,8 @@ public class Consultas {
                 * Math.cos(Math.toRadians(Double.parseDouble(latB)));
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double dist = (earthRadius * c) * 1000;
-
-            return dist <= 2000;
+        
+        return dist <= 2000;
     }
     
     public List<Alerta> conAlertaGeral() {
@@ -123,22 +125,22 @@ public class Consultas {
         s.getTransaction().commit();
         return lista;
     }
-
+    
     @SuppressWarnings("unchecked")
     public String usuarioValido() {
-
+        
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         String resultado = "false";
-
+        
         List<Usuario> lista = (List<Usuario>) s.createQuery("from Usuario u where u.email ='mariaap@gmail.com'").list();
         s.getTransaction().commit();
-
+        
         if (!lista.isEmpty()) {
             resultado = "true";
         }
-
+        
         return resultado;
     }
-
+    
 }
